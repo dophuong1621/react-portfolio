@@ -16,13 +16,16 @@
   --radius:  1rem;
 }
 
-html { scroll-behavior: smooth; }
-
+html, body, #root {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
 body {
   font-family: 'Outfit', sans-serif;
   background: var(--bg);
   color: var(--text);
-  overflow-x: hidden;
 }
 
 /* ─── SCROLLBAR ─── */
@@ -165,8 +168,41 @@ nav {
 }
 .stat-chip b { color: var(--text); }
 
-/* ─── SECTION COMMON ─── */
-section { padding: 6rem 8%; position: relative; z-index: 1; }
+/* ─── SWIPER COMMON ─── */
+.mySwiper {
+  width: 100%;
+  height: 100vh;
+}
+.swiper-slide {
+  height: 100vh !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.swiper-slide::-webkit-scrollbar { width: 4px; }
+.swiper-slide::-webkit-scrollbar-thumb { background: var(--brand-3); border-radius: 99px; }
+
+section { 
+  width: 100%;
+  min-height: 100%;
+  padding: 6rem 8%; 
+  position: relative; 
+  z-index: 1; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-footer-wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.contact-footer-wrapper > section {
+  flex: 1;
+  min-height: 0;
+  padding-bottom: 2rem;
+}
 .section-header { text-align: center; margin-bottom: 4rem; }
 .section-label {
   font-size: .78rem; font-weight: 700; letter-spacing: 3px;
@@ -214,7 +250,47 @@ section { padding: 6rem 8%; position: relative; z-index: 1; }
   transform: translateY(-1px);
 }
 
-/* ─── EXPERIENCE ─── */
+/* ─── EXPERIENCE GRID HORIZONTAL ─── */
+.experience-grid {
+  display: flex;
+  overflow-x: auto;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 1rem 0 2rem;
+  scroll-snap-type: x mandatory;
+}
+.experience-grid::-webkit-scrollbar { height: 6px; }
+.experience-grid::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+
+.experience-card {
+  flex: 0 0 calc(33.333% - 1rem); /* 3 cột trên PC */
+  min-width: 320px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.2rem;
+  backdrop-filter: blur(12px);
+  transition: transform .3s, border-color .3s;
+  text-align: left;
+  scroll-snap-align: center;
+}
+.experience-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(168,85,247,0.4);
+}
+.experience-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; padding-left: 1.2rem; margin-top: 1rem; }
+.experience-bullets li {
+  font-size: .9rem; color: var(--text); line-height: 1.6; font-weight: 500;
+  position: relative;
+}
+.experience-bullets li::before {
+  content: ''; position: absolute; left: -1.2rem; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--brand-3);
+}
+.experience-bullets li b { color: #e879f9; }
+
+/* ─── LEGACY TIMELINE (Kept for safe fallback) ─── */
 .timeline { max-width: 1000px; margin: 0 auto; position: relative; padding: 2rem 0; }
 .timeline::before {
   content: '';
@@ -417,4 +493,30 @@ footer {
   .timeline::before { left: 14px; }
   .timeline-content { padding-left: 36px; padding-top: 10px; }
   .timeline-dot { left: 14px; }
+}
+
+/* ─── CUSTOM ADDITIONS ─── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #818cf8, #e879f9);
+  transform-origin: 0%; z-index: 10000;
+}
+
+.custom-cursor {
+  background: rgba(168, 85, 247, 0.5);
+  height: 32px; width: 32px; border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  filter: blur(8px); mix-blend-mode: screen;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body { cursor: none; }
+  a, button, .btn-primary, .btn-outline { cursor: none; }
+}
+
+/* ─── MOBILE SCROLL FIX ─── */
+@media (max-width: 900px) {
+  section { padding: 4rem 5%; justify-content: flex-start; }
 }

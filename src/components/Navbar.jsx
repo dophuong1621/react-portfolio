@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +14,12 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav style={{ boxShadow: scrolled ? '0 4px 30px rgba(0,0,0,.4)' : 'none' }}>
+    <motion.nav 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: "spring", stiffness: 120, damping: 20 }}
+      style={{ boxShadow: scrolled ? '0 4px 30px rgba(0,0,0,.4)' : 'none' }}
+    >
       <div className="logo">ĐTP.</div>
       <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
         <li><a href="#hero" onClick={() => setIsOpen(false)}>Trang chủ</a></li>
@@ -25,6 +31,6 @@ export default function Navbar() {
       <button className="hamburger" onClick={() => setIsOpen(!isOpen)}>
         <span></span><span></span><span></span>
       </button>
-    </nav>
+    </motion.nav>
   );
 }

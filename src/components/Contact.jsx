@@ -1,14 +1,26 @@
 import { FaPhone, FaEnvelope, FaLinkedinIn, FaGithub, FaFacebookF } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 export default function Contact() {
   return (
     <section id="contact">
-      <div className="section-header fade-in">
+      <motion.div 
+        className="section-header"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+      >
         <p className="section-label">Kết nối</p>
         <h2 className="section-title">Liên Hệ Với Tôi</h2>
         <div className="section-line"></div>
-      </div>
-      <div className="contact-inner fade-in">
+      </motion.div>
+      <motion.div 
+        className="contact-inner"
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         <p style={{ color: 'var(--muted)', lineHeight: 1.8 }}>
           Bạn có dự án muốn hợp tác, hoặc đơn giản chỉ muốn xin chào? 
           Đừng ngần ngại nhắn cho tôi — tôi luôn sẵn sàng lắng nghe!
@@ -34,7 +46,7 @@ export default function Contact() {
           <a href="#" className="social-link" title="GitHub"><FaGithub /></a>
           <a href="#" className="social-link" title="Facebook"><FaFacebookF /></a>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
