@@ -30,7 +30,7 @@ export default function Hero({ swiper, isActive }) {
                 visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] } }
               }}
             >
-              Đỗ Thế<br /><span>Phương</span>
+              Đỗ Thế <span>Phương</span>
             </motion.h1>
           </div>
           <div className="hero-role" style={{ minHeight: '30px' }}>
