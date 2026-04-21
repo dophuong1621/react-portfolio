@@ -27,26 +27,48 @@ export default function Projects({ isActive }) {
     {
       icon: "💬",
       name: "JiRim Chat System",
-      desc: "Hệ thống chat real-time đầy đủ tính năng: nhắn tin, gọi video P2P (WebRTC), nhóm chat, emoji reactions, pin tin nhắn, presence tracking và E2E testing.",
-      tags: ["Laravel 11", "Vue 3", "WebRTC", "Pusher", "Redis", "Playwright"],
-      source: "#",
-      demo: "#"
+      desc: "Hệ thống chat real-time đầy đủ tính năng: nhắn tin 1-1 & nhóm, gọi video P2P (WebRTC), emoji reactions, pin tin nhắn, presence tracking và E2E testing với Playwright.",
+      tags: ["Laravel", "Vue", "WebRTC", "WebSocket", "Redis", "Playwright", "Pusher"],
+      source: "https://github.com/dophuong1621/chat-system",
     },
     {
-      icon: "🛒",
-      name: "E-Commerce Platform",
-      desc: "Website bán hàng tích hợp cổng thanh toán VNPay/Momo, quản lý đơn hàng, tồn kho thời gian thực và dashboard admin với biểu đồ thống kê.",
-      tags: ["Laravel", "Vue.js", "MySQL", "VNPay API"],
-      source: "#",
-      demo: "#"
+      icon: "🔑",
+      name: "Ritokey",
+      desc: "Nền tảng mua bán tài khoản và dịch vụ kỹ thuật số (YouTube, Cursor, ...). Hỗ trợ giao dịch tự động, quản lý đơn hàng và hệ thống kho hàng thông minh.",
+      tags: ["Laravel", "HTML/CSS", "Tailwind CSS", "jQuery", "Ajax", "MySQL", "Pusher"],
+      demo: "https://ritokey.com",
+    },
+    {
+      icon: "🏠",
+      name: "Hub HQ",
+      desc: "Hệ thống Hub tổng hợp, kết nối và quản lý các dịch vụ nội bộ của HQ Group. Cung cấp giao diện trung tâm để điều hướng và vận hành các hệ thống con.",
+      tags: ["Laravel", "HTML/CSS", "jQuery", "Ajax", "MySQL"],
+    },
+    {
+      icon: "🏪",
+      name: "Kho tập trung – Kho thành viên",
+      desc: "Nền tảng thương mại điện tử chuyên biệt cho phép người dùng tìm kiếm, mua sắm tài khoản game và các dịch vụ bổ trợ một cách tự động. Tập trung vào bảo mật, tốc độ giao dịch và quản lý kho hàng thông minh.",
+      tags: ["Laravel", "MySQL", "HTML/CSS", "JavaScript", "jQuery", "Ajax"],
+    },
+    {
+      icon: "💳",
+      name: "HPay",
+      desc: "Hệ thống thanh toán nội bộ của HQ Group, xử lý giao dịch nạp tiền, rút tiền và quản lý ví người dùng một cách an toàn và tự động.",
+      tags: ["Laravel", "MySQL", "REST API", "JavaScript", "jQuery"],
     },
     {
       icon: "📊",
-      name: "HR Management System",
-      desc: "Hệ thống quản lý nhân sự nội bộ: chấm công, tính lương tự động, quản lý nghỉ phép và báo cáo xuất Excel cho phòng HR.",
-      tags: ["PHP", "Laravel", "MySQL", "Bootstrap"],
-      source: "#"
-    }
+      name: "Báo cáo tài chính",
+      desc: "Hệ thống báo cáo tài chính nội bộ, tổng hợp dữ liệu giao dịch, xuất báo cáo theo kỳ và trực quan hóa số liệu cho ban quản lý.",
+      tags: ["Laravel", "MySQL", "JavaScript", "jQuery", "Ajax"],
+    },
+    {
+      icon: "🛒",
+      name: "Raonhanh365",
+      desc: "Nền tảng thương mại điện tử dạng rao vặt đa ngành hàng (xe cộ, đồ điện tử, đồ dùng cá nhân...). Hỗ trợ tìm kiếm, lọc, trò chuyện trực tiếp giữa người mua và người bán.",
+      tags: ["Laravel", "MySQL", "HTML/CSS", "JavaScript", "jQuery", "Ajax"],
+      demo: "https://raovat6s.com",
+    },
   ];
 
   return (

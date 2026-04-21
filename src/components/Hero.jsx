@@ -45,8 +45,8 @@ export default function Hero({ swiper, isActive }) {
             />
           </div>
           <p className="hero-desc">
-            Lập trình viên với niềm đam mê xây dựng các ứng dụng web real-time hiện đại.
-            Có kinh nghiệm phát triển hệ thống từ backend API đến giao diện người dùng,
+            Lập trình viên với niềm đam mê thiết kế giao diện và xây dựng hệ thống web toàn diện.
+            Có kinh nghiệm phát triển end-to-end từ backend API, cấu hình server đến giao diện người dùng,
             luôn hướng tới sản phẩm ổn định, hiệu năng cao và trải nghiệm người dùng xuất sắc.
           </p>
           <div className="hero-btns" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>

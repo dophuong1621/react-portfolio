@@ -40,7 +40,7 @@ export default function Skills({ isActive }) {
         >
           <div className="skill-group-title"><FaCode /> Ngôn ngữ lập trình</div>
           <div className="skill-tags">
-            {['PHP', 'JavaScript', 'TypeScript', 'Python', 'SQL', 'HTML/CSS'].map(tag => (
+            {['PHP', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'SQL', 'Shell Script', 'Apps Script', 'Golang'].map(tag => (
               <motion.span key={tag} variants={itemVariants} className="skill-tag">{tag}</motion.span>
             ))}
           </div>
@@ -54,7 +54,7 @@ export default function Skills({ isActive }) {
         >
           <div className="skill-group-title"><FaLayerGroup /> Framework & Library</div>
           <div className="skill-tags">
-            {['Laravel', 'Vue.js 3', 'Pinia', 'Vite', 'Laravel Echo', 'Pusher', 'Playwright', 'WebRTC'].map(tag => (
+            {['Laravel', 'CodeIgniter', 'Vue.js', 'React', 'Node.js', 'jQuery', 'Ajax', 'Tailwind CSS', 'WebSocket', 'WebRTC', 'REST API'].map(tag => (
               <motion.span key={tag} variants={itemVariants} className="skill-tag">{tag}</motion.span>
             ))}
           </div>
@@ -68,7 +68,7 @@ export default function Skills({ isActive }) {
         >
           <div className="skill-group-title"><FaTools /> Tools & Platform</div>
           <div className="skill-tags">
-            {['Git / GitHub', 'MySQL', 'Redis', 'Docker', 'XAMPP', 'Postman', 'VS Code', 'Linux'].map(tag => (
+            {['Git / GitHub', 'MySQL', 'Redis', 'Linux', 'Nginx', 'Postman', 'Figma', 'Playwright', 'Unit Test', 'Feature Test'].map(tag => (
               <motion.span key={tag} variants={itemVariants} className="skill-tag">{tag}</motion.span>
             ))}
           </div>

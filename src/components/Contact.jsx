@@ -28,8 +28,8 @@ export default function Contact({ isActive }) {
         }}
       >
         <p style={{ color: 'var(--muted)', lineHeight: 1.8 }}>
-          Bạn có dự án muốn hợp tác, hoặc đơn giản chỉ muốn xin chào? 
-          Đừng ngần ngại nhắn cho tôi — tôi luôn sẵn sàng lắng nghe!
+          Tôi đang tìm kiếm cơ hội việc làm phù hợp để phát triển bản thân.
+          Nếu bạn là nhà tuyển dụng hoặc có cơ hội muốn chia sẻ, đừng ngần ngại liên hệ — tôi luôn sẵn sàng!
         </p>
         <div className="contact-cards">
           <a href="tel:0522901602" className="contact-card">
@@ -48,9 +48,9 @@ export default function Contact({ isActive }) {
           </a>
         </div>
         <div className="social-links">
-          <Magnetic><a href="#" className="social-link" title="LinkedIn"><FaLinkedinIn /></a></Magnetic>
-          <Magnetic><a href="#" className="social-link" title="GitHub"><FaGithub /></a></Magnetic>
-          <Magnetic><a href="#" className="social-link" title="Facebook"><FaFacebookF /></a></Magnetic>
+          <Magnetic><a href="https://www.linkedin.com/in/ph%C6%B0%C6%A1ng-%C4%91%E1%BB%97-7471162b6/" target="_blank" rel="noreferrer" className="social-link" title="LinkedIn"><FaLinkedinIn /></a></Magnetic>
+          <Magnetic><a href="https://github.com/dophuong1621" target="_blank" rel="noreferrer" className="social-link" title="GitHub"><FaGithub /></a></Magnetic>
+          <Magnetic><a href="https://www.facebook.com/jirim1621" target="_blank" rel="noreferrer" className="social-link" title="Facebook"><FaFacebookF /></a></Magnetic>
         </div>
       </motion.div>
     </section>

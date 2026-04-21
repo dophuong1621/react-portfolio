@@ -41,44 +41,43 @@ export default function Experience({ isActive }) {
       >
         <motion.div variants={cardVariants} className="experience-card">
           <div className="timeline-meta" style={{ marginBottom: '1.2rem', alignItems: 'flex-start' }}>
-            <span className="timeline-period">06/2024 — Hiện tại</span>
-            <div className="timeline-role">IT Developer Intern</div>
-            <div className="company-name">FPT Telecom</div>
+            <span className="timeline-period">02/2023 — 05/2026</span>
+            <div className="timeline-role">Web Developer</div>
+            <div className="company-name">HQ Group</div>
           </div>
-          <p className="timeline-desc">Phát triển và duy trì hệ thống quản lý dịch vụ khách hàng với backend ổn định.</p>
+          <p className="timeline-desc">Phát triển và vận hành hệ thống web thương mại điện tử tập trung, quản lý kho thành viên và tối ưu hạ tầng server.</p>
           <ul className="experience-bullets">
-            <li>Xử lý khối lượng hơn <b>+5.000 đơn/ngày</b></li>
-            <li>Tích hợp Pusher WebSockets chat nội bộ realtime</li>
-            <li>Tối ưu response time từ 800ms xuống còn <b>120ms (-85%)</b></li>
-            <li>Tăng tỷ lệ E2E test coverage lên <b>35%</b> bằng Playwright</li>
+            <li>Thiết kế &amp; phát triển <b>giao diện người dùng</b> (Frontend)</li>
+            <li>Phát triển tính năng, tối ưu <b>backend</b> và hệ thống</li>
+            <li>Quản trị hạ tầng, <b>cấu hình server</b> và điều phối tài nguyên</li>
           </ul>
         </motion.div>
 
         <motion.div variants={cardVariants} className="experience-card">
           <div className="timeline-meta" style={{ marginBottom: '1.2rem', alignItems: 'flex-start' }}>
-            <span className="timeline-period">01/2023 — 05/2024</span>
-            <div className="timeline-role">Fullstack Web Developer</div>
-            <div className="company-name">Freelancer</div>
+            <span className="timeline-period">10/2022 — 12/2022</span>
+            <div className="timeline-role">Web Developer Intern</div>
+            <div className="company-name">Công ty Tigren</div>
           </div>
-          <p className="timeline-desc">Nhận phát triển giải pháp trọn gói cho các khách hàng cá nhân, doanh nghiệp nhỏ.</p>
+          <p className="timeline-desc">Thực tập phát triển web tại Tigren, học nền tảng Magento và làm việc trực tiếp trên môi trường Linux.</p>
           <ul className="experience-bullets">
-            <li>Thực hiện thành công <b>8+ dự án</b> (ecommerce, landing pages, HR)</li>
-            <li>Tích hợp cổng thanh toán <b>VNPay và Momo</b> an toàn</li>
-            <li>Đạt đánh giá <b>4.9/5.0</b> và 100% dự án đúng hạn</li>
+            <li>Học và thực hành phát triển với <b>Magento</b> (nền tảng eCommerce)</li>
+            <li>Làm việc trên hệ điều hành <b>Linux</b> trong môi trường thực tế</li>
+            <li>Tìm hiểu quy trình phát triển <b>thương mại điện tử</b> doanh nghiệp</li>
           </ul>
         </motion.div>
 
         <motion.div variants={cardVariants} className="experience-card">
           <div className="timeline-meta" style={{ marginBottom: '1.2rem', alignItems: 'flex-start' }}>
-            <span className="timeline-period">10/2021 — 12/2022</span>
-            <div className="timeline-role">Junior Frontend Dev</div>
-            <div className="company-name">Tech Agency</div>
+            <span className="timeline-period">03/2022 — 06/2022</span>
+            <div className="timeline-role">Web Developer Intern</div>
+            <div className="company-name">Công ty timviec365</div>
           </div>
-          <p className="timeline-desc">Tham gia xây dựng giao diện tương tác cao cho các chiến dịch marketing và sự kiện.</p>
+          <p className="timeline-desc">Thực tập phát triển web tại timviec365 — nền tảng tuyển dụng trực tuyến hàng đầu Việt Nam.</p>
           <ul className="experience-bullets">
-            <li>Chuyển đổi PSD/Figma sang React/Vue chuẩn <b>pixel-perfect</b></li>
-            <li>Áp dụng GSAP và Framer Motion tạo hiệu ứng <b>chuyên nghiệp</b></li>
-            <li>Đảm bảo responsive hoạt động mượt mà trên mọi thiết bị</li>
+            <li>Hỗ trợ phát triển và bảo trì <b>giao diện người dùng</b></li>
+            <li>Làm quen với quy trình phát triển phần mềm thực tế</li>
+            <li>Công nghệ: <b>PHP · HTML/CSS · JavaScript · MySQL</b></li>
           </ul>
         </motion.div>
       </ScrollableGrid>
