@@ -24,6 +24,7 @@ function App() {
       
       <Navbar swiper={swiper} />
 
+
       <Swiper
         onSwiper={setSwiper}
         direction={'vertical'}
