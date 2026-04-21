@@ -1,5 +1,6 @@
 import { FaPhone, FaEnvelope, FaLinkedinIn, FaGithub, FaFacebookF } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import Magnetic from './Animated/Magnetic';
 
 export default function Contact() {
   return (
@@ -42,9 +43,9 @@ export default function Contact() {
           </a>
         </div>
         <div className="social-links">
-          <a href="#" className="social-link" title="LinkedIn"><FaLinkedinIn /></a>
-          <a href="#" className="social-link" title="GitHub"><FaGithub /></a>
-          <a href="#" className="social-link" title="Facebook"><FaFacebookF /></a>
+          <Magnetic><a href="#" className="social-link" title="LinkedIn"><FaLinkedinIn /></a></Magnetic>
+          <Magnetic><a href="#" className="social-link" title="GitHub"><FaGithub /></a></Magnetic>
+          <Magnetic><a href="#" className="social-link" title="Facebook"><FaFacebookF /></a></Magnetic>
         </div>
       </motion.div>
     </section>

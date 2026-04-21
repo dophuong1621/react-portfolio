@@ -6,38 +6,44 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
+import ParticleBackground from './components/Animated/ParticleBackground';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Mousewheel, Pagination } from 'swiper/modules';
+import { Mousewheel, Pagination, HashNavigation } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { useState } from 'react';
 
 function App() {
+  const [swiper, setSwiper] = useState(null);
+
   return (
     <>
       <CustomCursor />
+      <ParticleBackground />
       
-      {/* Background blobs */}
-      <div className="blob blob-1"></div>
-      <div className="blob blob-2"></div>
-      
-      <Navbar />
+      <Navbar swiper={swiper} />
 
       <Swiper
+        onSwiper={setSwiper}
         direction={'vertical'}
         slidesPerView={1}
         spaceBetween={0}
-        mousewheel={true}
+        mousewheel={{
+          thresholdDelta: 50,
+          sensitivity: 1,
+        }}
         pagination={{ clickable: true }}
-        modules={[Mousewheel, Pagination]}
+        hashNavigation={{ watchState: true }}
+        modules={[Mousewheel, Pagination, HashNavigation]}
         className="mySwiper"
         speed={800}
       >
-        <SwiperSlide><Hero /></SwiperSlide>
-        <SwiperSlide><Skills /></SwiperSlide>
-        <SwiperSlide><Experience /></SwiperSlide>
-        <SwiperSlide><Projects /></SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide data-hash="hero"><Hero swiper={swiper} /></SwiperSlide>
+        <SwiperSlide data-hash="skills"><Skills /></SwiperSlide>
+        <SwiperSlide data-hash="experience"><Experience /></SwiperSlide>
+        <SwiperSlide data-hash="projects"><Projects /></SwiperSlide>
+        <SwiperSlide data-hash="contact">
           <div className="contact-footer-wrapper">
             <Contact />
             <Footer />

@@ -1,23 +1,38 @@
 import { FaFileAlt, FaPaperPlane, FaUser } from 'react-icons/fa';
 import Typewriter from 'typewriter-effect';
 import { motion } from 'framer-motion';
+import Magnetic from './Animated/Magnetic';
 
-export default function Hero() {
+export default function Hero({ swiper }) {
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    if (swiper) swiper.slideTo(4); // slide 4 is Contact
+  };
+
   return (
     <section id="hero">
       <div className="hero-inner">
         <motion.div 
           className="hero-text"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
           <div className="hero-badge">✦ Available for work</div>
-          <h1 className="hero-name">Đỗ Thế<br/><span>Phương</span></h1>
+          <div style={{ overflow: 'hidden', paddingBottom: '5px' }}>
+            <motion.h1 
+              className="hero-name"
+              initial={{ y: "100%", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+            >
+              Đỗ Thế<br/><span>Phương</span>
+            </motion.h1>
+          </div>
           <div className="hero-role" style={{ minHeight: '30px' }}>
             <Typewriter
               options={{
-                strings: ['Frontend Developer', 'UI/UX Enthusiast', 'Web Designer', 'React Developer'],
+                strings: ['Frontend Developer', 'UI/UX Enthusiast', 'Web Designer', 'PHP Developer'],
                 autoStart: true,
                 loop: true,
                 delay: 40,
@@ -30,13 +45,17 @@ export default function Hero() {
             Có kinh nghiệm phát triển hệ thống từ backend API đến giao diện người dùng,
             luôn hướng tới sản phẩm ổn định, hiệu năng cao và trải nghiệm người dùng xuất sắc.
           </p>
-          <div className="hero-btns">
-            <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href="#" className="btn-primary">
-              <FaFileAlt /> Xem CV
-            </motion.a>
-            <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href="#contact" className="btn-outline">
-              <FaPaperPlane /> Liên hệ ngay
-            </motion.a>
+          <div className="hero-btns" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <Magnetic>
+              <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href="#" className="btn-primary">
+                <FaFileAlt /> Xem CV
+              </motion.a>
+            </Magnetic>
+            <Magnetic>
+              <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href="#contact" onClick={handleContactClick} className="btn-outline">
+                <FaPaperPlane /> Liên hệ ngay
+              </motion.a>
+            </Magnetic>
           </div>
           <div className="stat-chips">
             <div className="stat-chip"><b>3+</b> năm kinh nghiệm</div>
@@ -57,7 +76,7 @@ export default function Hero() {
             animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.6, 0.3] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           ></motion.div>
-          <FaUser />
+          <img src={`${import.meta.env.BASE_URL}avatar.jpg`} alt="Avatar" className="hero-avatar-img" />
         </motion.div>
       </div>
     </section>
