@@ -487,6 +487,9 @@ section {
   height: 110px;
   background: linear-gradient(135deg, rgba(79,70,229,.2), rgba(168,85,247,.15));
   display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; /* Tăng kích thước ảnh/icon */
+  color: #fff;
+  position: relative; overflow: hidden;
 }
 .project-img::before {
   content: ''; position: absolute; inset: 0;
