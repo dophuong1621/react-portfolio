@@ -94,7 +94,16 @@ export default function Hero({ swiper, isActive }) {
             animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.6, 0.3] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           ></motion.div>
-          <img src={`${import.meta.env.BASE_URL}avatar.jpg`} alt="Avatar" className="hero-avatar-img" />
+          <img
+            src={`${import.meta.env.BASE_URL}avatar.jpg`}
+            alt="Đỗ Thế Phương — PHP & Laravel Developer"
+            className="hero-avatar-img"
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
+            width="300"
+            height="390"
+          />
         </motion.div>
       </div>
     </section>

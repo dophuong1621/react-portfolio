@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+/* Google Fonts loaded via <link preload> in index.html — không dùng @import để tránh render-blocking */
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -1188,6 +1188,22 @@ footer {
   .chatbot-tab svg {
     width: 17px;
     height: 17px;
+  }
+}
+
+/* ─── PERFORMANCE: Tắt animation nếu user prefer reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .avatar-ring {
+    animation: none !important;
   }
 }
 
