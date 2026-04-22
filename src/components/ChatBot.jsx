@@ -169,11 +169,6 @@ function generateResponse(userInput) {
     return `🌟 **Ngoài công việc, Phương:**\n\n📸 **Nhiếp ảnh điện ảnh** – Chụp chân dung cinematic với Canon EOS R5 + 85mm f/1.4\n⚽ **Bóng đá** – Từng ghi 5 bàn + 3 kiến tạo trong 1 trận\n🤖 **AI sáng tạo** – Đam mê tạo hình ảnh & âm nhạc bằng AI\n\nPhương là người đa tài và sáng tạo cả trong lẫn ngoài công việc! 😄`;
   }
 
-  // BA / Business Analyst
-  if (match('ba', 'business analyst', 'phân tích', 'nghiệp vụ', 'system design', 'thiết kế hệ thống')) {
-    return `📊 **Business Analyst skills:**\n\nPhương kết hợp BA + Developer hiếm có:\n• **Phân tích nghiệp vụ** từ yêu cầu khách hàng\n• **Thiết kế luồng hệ thống** (flow, ERD, API spec)\n• **Trực tiếp lập trình** thay vì chỉ viết tài liệu\n\nĐiều này giúp giảm chi phí communication và rút ngắn thời gian phát triển đáng kể!`;
-  }
-
   // Why hire
   if (match('tại sao', 'why hire', 'điểm mạnh', 'strength', 'why phuong', 'why should', 'lý do')) {
     return `🏆 **Tại sao chọn Phương?**\n\n✅ **Toàn vòng đời:** BA → Code → Deploy – chỉ 1 người\n✅ **Laravel chuyên sâu** + viết Unit Test nghiêm túc\n✅ **Real-time systems** với WebSocket\n✅ **Server management** (Nginx, bảo mật)\n✅ **Tư duy hệ thống** của một BA, tay nghề của một Developer\n\n📄 Tải CV để xem chi tiết → nút ở đầu trang!`;
