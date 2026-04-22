@@ -48,8 +48,9 @@
             href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" />
     </noscript>
 
-    <!-- ─── Preload LCP image (avatar) ─── -->
-    <link rel="preload" as="image" href="/avatar.jpg" fetchpriority="high" />
+    <!-- ─── Preload LCP image (avatar) — mobile nhận ảnh nhỏ hơn ─── -->
+    <link rel="preload" as="image" href="/avatar-mobile.jpg" fetchpriority="high" media="(max-width: 768px)" />
+    <link rel="preload" as="image" href="/avatar.jpg" fetchpriority="high" media="(min-width: 769px)" />
   </head>
   <body>
     <div id="root"></div>

@@ -94,16 +94,24 @@ export default function Hero({ swiper, isActive }) {
             animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.6, 0.3] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           ></motion.div>
-          <img
-            src={`${import.meta.env.BASE_URL}avatar.jpg`}
-            alt="Đỗ Thế Phương — PHP & Laravel Developer"
-            className="hero-avatar-img"
-            fetchpriority="high"
-            loading="eager"
-            decoding="async"
-            width="300"
-            height="390"
-          />
+          <picture>
+            {/* Mobile ≤768px → ảnh nhỏ 22 KB (420px wide) */}
+            <source
+              media="(max-width: 768px)"
+              srcSet={`${import.meta.env.BASE_URL}avatar-mobile.jpg`}
+            />
+            {/* Desktop → ảnh gốc 44 KB */}
+            <img
+              src={`${import.meta.env.BASE_URL}avatar.jpg`}
+              alt="Đỗ Thế Phương — PHP & Laravel Developer"
+              className="hero-avatar-img"
+              fetchpriority="high"
+              loading="eager"
+              decoding="async"
+              width="300"
+              height="390"
+            />
+          </picture>
         </motion.div>
       </div>
     </section>
