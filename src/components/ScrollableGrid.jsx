@@ -8,7 +8,7 @@ import useDraggableScroll from '../hooks/useDraggableScroll';
 export default function ScrollableGrid({ className = '', children, ...props }) {
   const dragRef = useDraggableScroll();
   const scrollRef = useRef(null);
-  const [thumbStyle, setThumbStyle] = useState({ left: 0, width: 20 });
+  const thumbRef = useRef(null);
 
   // Gán cả dragRef và scrollRef vào cùng 1 element
   const setRefs = useCallback((node) => {
@@ -18,17 +18,21 @@ export default function ScrollableGrid({ className = '', children, ...props }) {
 
   const updateThumb = useCallback(() => {
     const el = scrollRef.current;
-    if (!el) return;
+    const thumbEl = thumbRef.current;
+    if (!el || !thumbEl) return;
+
     const { scrollLeft, scrollWidth, clientWidth } = el;
     if (scrollWidth <= clientWidth) {
-      // Không có gì để scroll: thumb chiếm toàn bộ
-      setThumbStyle({ left: 0, width: 100 });
+      thumbEl.style.left = '0%';
+      thumbEl.style.width = '100%';
       return;
     }
     const ratio = clientWidth / scrollWidth;
     const thumbW = Math.max(ratio * 100, 8);
     const thumbL = (scrollLeft / (scrollWidth - clientWidth)) * (100 - thumbW);
-    setThumbStyle({ left: thumbL, width: thumbW });
+
+    thumbEl.style.left = `${thumbL}%`;
+    thumbEl.style.width = `${thumbW}%`;
   }, []);
 
   useEffect(() => {
@@ -81,10 +85,8 @@ export default function ScrollableGrid({ className = '', children, ...props }) {
       <div className="scroll-track" onClick={handleTrackClick} role="scrollbar" aria-hidden="true">
         <div
           className="scroll-thumb"
-          style={{
-            left: `${thumbStyle.left}%`,
-            width: `${thumbStyle.width}%`,
-          }}
+          ref={thumbRef}
+          style={{ left: '0%', width: '10%' }}
         />
       </div>
     </div>
