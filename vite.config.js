@@ -25,7 +25,6 @@ export default defineConfig({
         entryFileNames: 'assets/[name]-[hash].js',
         manualChunks: {
           'vendor-react':     ['react', 'react-dom'],
-          'vendor-swiper':    ['swiper'],
           'vendor-framer':    ['framer-motion'],
           'vendor-particles': ['@tsparticles/react', '@tsparticles/slim', '@tsparticles/engine'],
           'vendor-misc':      ['TagCloud', 'typewriter-effect', 'react-icons'],
