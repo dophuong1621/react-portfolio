@@ -156,7 +156,7 @@ function generateResponse(userInput) {
 
   // CV / Resume
   if (match('cv', 'resume', 'hồ sơ', 'tải', 'download')) {
-    return `📄 **Xem CV của Phương:**\n\nBạn có thể nhấn nút **"Tải CV"** ngay tại phần giới thiệu ở đầu trang web nhé!\n\nCV bao gồm:\n• Kinh nghiệm làm việc chi tiết\n• Quá trình học tập & Kỹ năng\n• Các dự án nổi bật\n\n⬆️ Cuộn lên và bấm nút "Tải CV" nha!`;
+    return `📄 **Tải CV của Phương:**\n\nBạn có thể nhấn nút **"Tải CV"** ngay tại phần giới thiệu ở đầu trang web nhé!\n\nCV bao gồm:\n• Kinh nghiệm làm việc chi tiết\n• Quá trình học tập & Kỹ năng\n• Các dự án nổi bật\n\n⬆️ Cuộn lên và bấm nút "Tải CV" nha!`;
   }
 
   // Salary / sensitive info
