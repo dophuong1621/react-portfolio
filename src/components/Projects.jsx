@@ -10,17 +10,17 @@ export default function Projects({ isActive, isMobile }) {
 
   const projects = [
     {
-      icon: "💬",
-      name: "JiRim Chat System",
-      desc: "Hệ thống chat real-time đầy đủ tính năng: nhắn tin 1-1 & nhóm, gọi video P2P (WebRTC), emoji reactions, pin tin nhắn, presence tracking và E2E testing với Playwright.",
-      tags: ["Laravel", "Vue", "WebRTC", "WebSocket", "Redis", "Playwright", "Pusher"],
-    },
-    {
       icon: "🔑",
       name: "Ritokey",
       desc: "Nền tảng mua bán tài khoản và dịch vụ kỹ thuật số (YouTube, Cursor, ...). Hỗ trợ giao dịch tự động, quản lý đơn hàng và hệ thống kho hàng thông minh.",
-      tags: ["Laravel", "HTML/CSS", "Tailwind CSS", "jQuery", "Ajax", "MySQL", "Pusher"],
+      tags: ["Laravel", "MySQL", "Redis Queue", "Tailwind", "JQuery", "Ajax"],
       demo: "https://ritokey.com",
+    },
+    {
+      icon: "💬",
+      name: "JiRim Chat System",
+      desc: "Hệ thống chat real-time đầy đủ tính năng: nhắn tin 1-1 & nhóm, gọi video P2P (WebRTC), emoji reactions, pin tin nhắn, presence tracking và E2E testing với Playwright.",
+      tags: ["Laravel", "Vue 3", "WebRTC", "WebSocket", "Redis", "Playwright", "Unit Test"],
     },
     {
       icon: "🏠",

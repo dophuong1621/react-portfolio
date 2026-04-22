@@ -39,9 +39,9 @@ export default function Skills({ isActive, isMobile }) {
           animate={showAnim ? "visible" : "hidden"}
           viewport={{ once: true }}
         >
-          <div className="skill-group-title"><FaCode /> Ngôn ngữ lập trình</div>
+          <div className="skill-group-title"><FaCode /> Core Stack (Chuyên sâu)</div>
           <div className="skill-tags">
-            {['PHP', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'SQL', 'Shell Script', 'Apps Script', 'Golang'].map((tag, i) => (
+            {['PHP', 'Laravel', 'UX/UI', 'MySQL', 'Redis', 'Nginx', 'REST API'].map((tag, i) => (
               <span
                 key={tag}
                 className="skill-tag"
@@ -57,9 +57,9 @@ export default function Skills({ isActive, isMobile }) {
           animate={showAnim ? "visible" : "hidden"}
           viewport={{ once: true }}
         >
-          <div className="skill-group-title"><FaLayerGroup /> Framework &amp; Library</div>
+          <div className="skill-group-title"><FaLayerGroup /> System Architecture &amp; Testing</div>
           <div className="skill-tags">
-            {['Laravel', 'CodeIgniter', 'Vue.js', 'React', 'Node.js', 'jQuery', 'Ajax', 'Tailwind CSS', 'WebSocket', 'WebRTC', 'REST API'].map((tag, i) => (
+            {['System Design', 'API Specs', 'Performance Optimization', 'Playwright', 'Unit Test'].map((tag, i) => (
               <span
                 key={tag}
                 className="skill-tag"
@@ -75,9 +75,9 @@ export default function Skills({ isActive, isMobile }) {
           animate={showAnim ? "visible" : "hidden"}
           viewport={{ once: true }}
         >
-          <div className="skill-group-title"><FaTools /> Tools &amp; Platform</div>
+          <div className="skill-group-title"><FaTools /> DevOps &amp; Exploring</div>
           <div className="skill-tags">
-            {['Git / GitHub', 'MySQL', 'Redis', 'Linux', 'Nginx', 'Postman', 'Figma', 'Playwright', 'Unit Test', 'Feature Test'].map((tag, i) => (
+            {['Linux Server', 'CI/CD Pipelines', 'Docker', 'Git / GitHub', 'WebRTC', 'Golang', 'React', 'Figma', 'WebSocket'].map((tag, i) => (
               <span
                 key={tag}
                 className="skill-tag"

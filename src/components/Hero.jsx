@@ -1,4 +1,5 @@
-import { FaFileAlt, FaPaperPlane } from 'react-icons/fa';
+import { useState } from 'react';
+import { FaFileAlt, FaPaperPlane, FaCode } from 'react-icons/fa';
 import Typewriter from 'typewriter-effect';
 import { motion, useReducedMotion } from 'framer-motion';
 import Magnetic from './Animated/Magnetic';
@@ -11,6 +12,20 @@ export default function Hero({ swiper, isActive }) {
   const handleContactClick = (e) => {
     e.preventDefault();
     if (swiper) swiper.slideTo(4); // slide 4 is Contact
+  };
+
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const handleDownloadCV = (e) => {
+    if (isDownloading) {
+      e.preventDefault();
+      return;
+    }
+    setIsDownloading(true);
+    // Giữ trạng thái loading 2.5s để chống spam click
+    setTimeout(() => {
+      setIsDownloading(false);
+    }, 2500);
   };
 
   return (
@@ -38,25 +53,37 @@ export default function Hero({ swiper, isActive }) {
             </motion.h1>
           </div>
           <div className="hero-role" style={{ minHeight: '30px' }}>
-            <Typewriter
-              options={{
-                strings: ['PHP Developer', 'Full-Stack Developer', 'Linux Server Admin', 'QA Automation Tester', 'UI/UX Enthusiast'],
-                autoStart: true,
-                loop: true,
-                delay: 40,
-                deleteSpeed: 20,
-              }}
-            />
-          </div>
-          <p className="hero-desc">
-            Lập trình viên với niềm đam mê thiết kế giao diện và xây dựng hệ thống web toàn diện.
-            Có kinh nghiệm phát triển end-to-end từ backend API, cấu hình server đến giao diện người dùng,
-            luôn hướng tới sản phẩm ổn định, hiệu năng cao và trải nghiệm người dùng xuất sắc.
-          </p>
+              <Typewriter
+                options={{
+                  strings: ['Full-Stack Developer', 'System Architecture', 'UI/UX Enthusiast'],
+                  autoStart: true,
+                  loop: true,
+                  delay: 40,
+                  deleteSpeed: 20,
+                }}
+              />
+            </div>
+            <p className="hero-desc">
+              Là một Full Stack Developer đam mê công nghệ, tôi có thế mạnh trong việc thiết kế kiến trúc hệ thống linh hoạt và tối ưu hóa trải nghiệm người dùng. Mục tiêu của tôi là xây dựng các nền tảng chất lượng cao, hiệu năng vượt trội với hệ sinh thái đa dạng (Laravel, Vue 3, Tailwind, jQuery...) nhằm giải quyết các bài toán khó của doanh nghiệp.
+            </p>
           <div className="hero-btns" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <Magnetic>
-              <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href="#" className="btn-primary">
-                <FaFileAlt /> Xem CV
+              <motion.a 
+                whileHover={!isDownloading ? { scale: 1.05 } : {}} 
+                whileTap={!isDownloading ? { scale: 0.95 } : {}} 
+                href={`${import.meta.env.BASE_URL}CV.pdf`} 
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`btn-primary ${isDownloading ? 'loading-btn' : ''}`}
+                onClick={handleDownloadCV}
+                style={{ opacity: isDownloading ? 0.7 : 1, cursor: isDownloading ? 'wait' : 'pointer' }}
+              >
+                {isDownloading ? (
+                  <>⏳ Đang chuẩn bị...</>
+                ) : (
+                  <><FaFileAlt /> Tải CV (PDF)</>
+                )}
               </motion.a>
             </Magnetic>
             <Magnetic>

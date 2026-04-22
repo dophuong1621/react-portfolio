@@ -112,7 +112,7 @@ function generateResponse(userInput) {
 
   // Who / Introduction
   if (match('phương là ai', 'giới thiệu', 'who is', 'introduce', 'về phương', 'về anh ấy', 'about', 'thông tin cá nhân', 'cá nhân', 'bản thân')) {
-    return `**${KB.name}** là một Full-stack Developer với năng lực phát triển toàn diện:\n\n• 💻 **Dev**: Xây dựng Backend API & thiết kế Frontend UI/UX\n• 🖥️ **DevOps**: Cấu hình Nginx, Linux Server Admin\n• 🧪 **QA**: Tự động hóa kiểm thử phần mềm\n\nPhương cover **toàn bộ vòng đời** của một dự án web!\n\n📄 Bạn có thể bấm nút "Xem CV" ở màn hình đầu trang để biết thêm nha!`;
+    return `**${KB.name}** là một Full-stack Developer với năng lực phát triển toàn diện:\n\n• 💻 **Dev**: Xây dựng Backend API & thiết kế Frontend UI/UX\n• 🖥️ **DevOps**: Cấu hình Nginx, Linux Server Admin\n• 🧪 **QA**: Tự động hóa kiểm thử phần mềm\n\nPhương cover **toàn bộ vòng đời** của một dự án web!\n\n📄 Bạn có thể bấm nút "Tải CV" ở màn hình đầu trang để biết thêm nha!`;
   }
 
   // Tech stack / Skills
@@ -156,7 +156,7 @@ function generateResponse(userInput) {
 
   // CV / Resume
   if (match('cv', 'resume', 'hồ sơ', 'tải', 'download')) {
-    return `📄 **Xem CV của Phương:**\n\nBạn có thể nhấn nút **"Xem CV"** ngay tại phần giới thiệu ở đầu trang web nhé!\n\nCV bao gồm:\n• Kinh nghiệm làm việc chi tiết\n• Quá trình học tập & Kỹ năng\n• Các dự án nổi bật\n\n⬆️ Cuộn lên và bấm nút "Xem CV" nha!`;
+    return `📄 **Xem CV của Phương:**\n\nBạn có thể nhấn nút **"Tải CV"** ngay tại phần giới thiệu ở đầu trang web nhé!\n\nCV bao gồm:\n• Kinh nghiệm làm việc chi tiết\n• Quá trình học tập & Kỹ năng\n• Các dự án nổi bật\n\n⬆️ Cuộn lên và bấm nút "Tải CV" nha!`;
   }
 
   // Salary / sensitive info
@@ -169,18 +169,18 @@ function generateResponse(userInput) {
     return `🌟 **Ngoài công việc, Phương:**\n\n📸 **Nhiếp ảnh điện ảnh** – Chụp chân dung cinematic với Canon EOS R5 + 85mm f/1.4\n⚽ **Bóng đá** – Từng ghi 5 bàn + 3 kiến tạo trong 1 trận\n🤖 **AI sáng tạo** – Đam mê tạo hình ảnh & âm nhạc bằng AI\n\nPhương là người đa tài và sáng tạo cả trong lẫn ngoài công việc! 😄`;
   }
 
-  // BA / Business Analyst
-  if (match('ba', 'business analyst', 'phân tích', 'nghiệp vụ', 'system design', 'thiết kế hệ thống')) {
-    return `📊 **Business Analyst skills:**\n\nPhương kết hợp BA + Developer hiếm có:\n• **Phân tích nghiệp vụ** từ yêu cầu khách hàng\n• **Thiết kế luồng hệ thống** (flow, ERD, API spec)\n• **Trực tiếp lập trình** thay vì chỉ viết tài liệu\n\nĐiều này giúp giảm chi phí communication và rút ngắn thời gian phát triển đáng kể!`;
+  // System Architecture
+  if (match('system design', 'thiết kế hệ thống', 'kiến trúc', 'architecture', 'hiệu năng', 'performance', 'metric', 'con số')) {
+    return `📊 **System Architecture & Performance:**\n\nPhương thiết kế hệ thống tập trung vào hiệu năng và khả năng mở rộng:\n• **Tối ưu tự động hóa:** Giảm 85% thời gian xử lý đơn (Dự án Ritokey).\n• **Tối ưu tài nguyên:** Giảm 70% băng thông server nhờ kiến trúc WebRTC (Dự án JiRim).\n• **Thiết kế luồng dữ liệu:** Xây dựng ERD, Sequence Diagram, API Specs rõ ràng để scale hệ thống an toàn.\n\nSự kết hợp giữa code tốt và thiết kế chuẩn giúp hệ thống luôn ổn định!`;
   }
 
   // Why hire
   if (match('tại sao', 'why hire', 'điểm mạnh', 'strength', 'why phuong', 'why should', 'lý do')) {
-    return `🏆 **Tại sao chọn Phương?**\n\n✅ **Toàn vòng đời:** BA → Code → Deploy – chỉ 1 người\n✅ **Laravel chuyên sâu** + viết Unit Test nghiêm túc\n✅ **Real-time systems** với WebSocket\n✅ **Server management** (Nginx, bảo mật)\n✅ **Tư duy hệ thống** của một BA, tay nghề của một Developer\n\n📄 Tải CV để xem chi tiết → nút ở đầu trang!`;
+    return `🏆 **Tại sao chọn Phương?**\n\n✅ **Fullstack Expertise:** Thành thạo cả Backend lẫn Frontend, phát triển sản phẩm end-to-end.\n✅ **Deep Knowledge:** Chuyên sâu PHP/Laravel & Vue 3, giải quyết các bài toán khó (Race Condition, WebSocket, WebRTC).\n✅ **DevOps Mindset:** Quản lý Linux Server, CI/CD, Nginx, hướng tới High Availability.\n✅ **Data-driven:** Tối ưu hóa và đo lường hệ thống bằng con số (SLA 99.9%, latency < 50ms).\n\n📄 Bạn tải CV để xem chi tiết nhé → nút ở đầu trang!`;
   }
 
   // Default fallback
-  return `🤔 Cảm ơn bạn đã hỏi! Tôi chưa có thông tin chính xác về điều này.\n\nBạn có thể hỏi về:\n• 💼 **Kỹ năng & Tech Stack**\n• 🚀 **Dự án đã làm**\n• 📊 **Kinh nghiệm BA**\n• 📬 **Cách liên hệ**\n• 📄 **Tải CV**\n\nHoặc liên hệ trực tiếp: **${KB.email}**`;
+  return `🤔 Cảm ơn bạn đã hỏi! Tôi chưa có thông tin chính xác về điều này.\n\nBạn có thể hỏi về:\n• 💼 **Kỹ năng & Tech Stack**\n• 🚀 **Dự án đã làm**\n• 📊 **Kiến trúc hệ thống**\n• 📬 **Cách liên hệ**\n• 📄 **Tải CV**\n\nHoặc liên hệ trực tiếp: **${KB.email}**`;
 }
 
 // ─────────────────────────────────────────────
