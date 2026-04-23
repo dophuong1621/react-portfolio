@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaTimes, FaDownload, FaEye } from 'react-icons/fa';
 import CVTemplate from './CVTemplate';
 import { usePdfExport } from '../hooks/usePdfExport';
+import { trackCVEvent } from '../hooks/useCVTracking';
 
 // A4 kích thước thật ở 96 DPI
 const A4_W_PX = 794;
@@ -29,8 +30,10 @@ export default function CVPreviewModal({ isOpen, onClose }) {
   useEffect(() => {
     if (!isOpen) return;
     remeasure();
-    const t = setTimeout(remeasure, 150); // backup sau 150ms
+    const t = setTimeout(remeasure, 150);
     window.addEventListener('resize', remeasure);
+    // Ghi nhận lượt xem CV
+    trackCVEvent('cv_view');
     return () => {
       clearTimeout(t);
       window.removeEventListener('resize', remeasure);
@@ -125,7 +128,7 @@ export default function CVPreviewModal({ isOpen, onClose }) {
               </AnimatePresence>
 
               <button
-                onClick={handleDownload}
+                onClick={() => { trackCVEvent('cv_download'); handleDownload(); }}
                 disabled={isDownloading || !isReady}
                 style={{
                   display:      'flex',
