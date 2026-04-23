@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { FaFileAlt, FaPaperPlane } from 'react-icons/fa';
 import Typewriter from 'typewriter-effect';
 import { motion, useReducedMotion } from 'framer-motion';
 import Magnetic from './Animated/Magnetic';
 import useIsMobile from '../hooks/useIsMobile';
+
+const CVPreviewModal = lazy(() => import('./CVPreviewModal'));
 
 export default function Hero({ swiper, isActive }) {
   const isMobile = useIsMobile(900);
@@ -22,18 +24,11 @@ export default function Hero({ swiper, isActive }) {
     if (swiper) swiper.slideTo(4); // slide 4 is Contact
   };
 
-  const [isDownloading, setIsDownloading] = useState(false);
+  const [showCVModal, setShowCVModal] = useState(false);
 
   const handleDownloadCV = (e) => {
-    if (isDownloading) {
-      e.preventDefault();
-      return;
-    }
-    setIsDownloading(true);
-    // Giữ trạng thái loading 2.5s để chống spam click
-    setTimeout(() => {
-      setIsDownloading(false);
-    }, 2500);
+    e.preventDefault();
+    setShowCVModal(true);
   };
 
   return (
@@ -83,28 +78,23 @@ export default function Hero({ swiper, isActive }) {
             {/* Fix E: Magnetic chỉ trên desktop — mobile không có chuột */}
             {isMobile ? (
               <a
-                href={`${import.meta.env.BASE_URL}CV.pdf`}
-                download
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`btn-primary ${isDownloading ? 'loading-btn' : ''}`}
+                href="#"
+                className="btn-primary"
                 onClick={handleDownloadCV}
-                style={{ opacity: isDownloading ? 0.7 : 1 }}
               >
-                {isDownloading ? <>⏳ Đang chuẩn bị...</> : <><FaFileAlt /> Tải CV (PDF)</>}
+                <FaFileAlt /> Xem & Tải CV
               </a>
             ) : (
               // Desktop: dùng dynamic import để tránh đưa Magnetic vào initial parse
               <motion.a
-                whileHover={!isDownloading ? { scale: 1.05 } : {}}
-                whileTap={!isDownloading ? { scale: 0.95 } : {}}
-                href={`${import.meta.env.BASE_URL}CV.pdf`}
-                download target="_blank" rel="noopener noreferrer"
-                className={`btn-primary ${isDownloading ? 'loading-btn' : ''}`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="#"
+                className="btn-primary"
                 onClick={handleDownloadCV}
-                style={{ opacity: isDownloading ? 0.7 : 1, cursor: isDownloading ? 'wait' : 'pointer' }}
+                style={{ cursor: 'pointer' }}
               >
-                {isDownloading ? <>⏳ Đang chuẩn bị...</> : <><FaFileAlt /> Tải CV (PDF)</>}
+                <FaFileAlt /> Xem & Tải CV
               </motion.a>
             )}
             {isMobile ? (
@@ -168,6 +158,16 @@ export default function Hero({ swiper, isActive }) {
           </picture>
         </motion.div>
       </div>
+
+      {/* CV Preview Modal Lazy Loaded */}
+      <Suspense fallback={null}>
+        {showCVModal && (
+          <CVPreviewModal 
+            isOpen={showCVModal} 
+            onClose={() => setShowCVModal(false)} 
+          />
+        )}
+      </Suspense>
     </section>
   );
 }

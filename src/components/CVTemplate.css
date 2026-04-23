@@ -1,0 +1,199 @@
+.cv-preview-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: #f3f4f6; /* Nền nhạt để làm nổi bật tờ giấy */
+  min-height: calc(100vh - 60px);
+}
+
+.cv-template {
+  /* Kích thước chuẩn A4 (210x297mm) tại 96 DPI: 794px x 1123px */
+  width: 794px;
+  height: 1123px;
+  background-color: #ffffff;
+  color: #333333;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Sidebar bên trái */
+.cv-sidebar {
+  width: 35%;
+  background-color: #1e293b;
+  color: #f8fafc;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.cv-avatar-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.cv-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #38bdf8;
+  margin-bottom: 15px;
+}
+
+.cv-contact-info,
+.cv-skills {
+  margin-bottom: 30px;
+}
+
+.cv-section-title-sidebar {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #38bdf8;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #334155;
+  padding-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+.cv-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  word-break: break-all;
+}
+
+.cv-contact-item svg {
+  min-width: 16px;
+  color: #94a3b8;
+}
+
+.cv-skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cv-skill-tag {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #e2e8f0;
+}
+
+/* Nội dung chính bên phải */
+.cv-main {
+  width: 65%;
+  padding: 40px 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.cv-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.cv-name {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 5px 0;
+  letter-spacing: -1px;
+}
+
+.cv-title {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #3b82f6;
+  margin: 0;
+}
+
+.cv-summary {
+  margin-top: 15px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #475569;
+}
+
+.cv-section {
+  margin-bottom: 25px;
+}
+
+.cv-section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cv-section-title::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 4px;
+  background-color: #3b82f6;
+  border-radius: 2px;
+}
+
+.cv-experience-item,
+.cv-project-item {
+  margin-bottom: 20px;
+}
+
+.cv-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 5px;
+}
+
+.cv-item-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #1e293b;
+  margin: 0;
+}
+
+.cv-item-date {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.cv-item-subtitle {
+  font-size: 0.95rem;
+  color: #3b82f6;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.cv-item-desc {
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.cv-item-desc ul {
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.cv-item-desc li {
+  margin-bottom: 4px;
+}
