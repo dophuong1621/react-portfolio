@@ -4,6 +4,7 @@ import Hero             from './components/Hero';
 import ParticleBackground from './components/Animated/ParticleBackground';
 import CustomCursor     from './components/CustomCursor';
 import useIsMobile      from './hooks/useIsMobile';
+import { usePageTracking } from './hooks/useCVTracking';
 
 // ── Lazy-load mọi thứ DƯỚI Hero → tách khỏi main chunk
 // Rollup sẽ tạo các chunk riêng, chỉ fetch khi cần
@@ -51,7 +52,8 @@ const ChatBotSkeleton = () => (
 
 function App() {
   const [swiper, setSwiper] = useState(null);
-  const isMobile = useIsMobile(900); // <= 900px → scroll bình thường (sync với CSS breakpoint)
+  const isMobile = useIsMobile(900); // <= 900px → scroll bình thường
+  usePageTracking(); // tracking lượt vào website (1 lần khi mount)
 
   return (
     <>

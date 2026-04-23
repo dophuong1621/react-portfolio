@@ -1,54 +1,141 @@
 // Webhook URL của Google Apps Script
 const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwzO_Gs3UNayoq9NSGY_S1ScpPNVHksK24BheXcunA-7HxcuGQSeKVIrPoLCMMQjt6T/exec';
 
+// Cache geo data để không gọi API nhiều lần trong 1 session
+let geoCache = null;
+
 /**
- * Gửi sự kiện tracking đến Google Sheets
- * @param {'cv_view' | 'cv_download'} eventName
+ * Lấy IP + vị trí địa lý qua ipapi.co (free, 1000 req/ngày)
  */
-export function trackCVEvent(eventName) {
+async function getGeoInfo() {
+  if (geoCache) return geoCache;
   try {
-    const now = new Date();
-    const timeStr = now.toLocaleString('vi-VN', {
-      timeZone: 'Asia/Ho_Chi_Minh',
-      day: '2-digit', month: '2-digit', year: 'numeric',
-      hour: '2-digit', minute: '2-digit', second: '2-digit',
-    });
+    const res = await fetch('https://ipapi.co/json/', { mode: 'cors' });
+    const data = await res.json();
+    geoCache = {
+      ip:      data.ip            || 'unknown',
+      country: data.country_name  || 'unknown',
+      city:    data.city          || 'unknown',
+      org:     data.org           || 'unknown',
+    };
+  } catch {
+    geoCache = { ip: 'unknown', country: 'unknown', city: 'unknown', org: 'unknown' };
+  }
+  return geoCache;
+}
 
-    // Phân loại thiết bị
-    const ua = navigator.userAgent;
-    let device = 'Desktop';
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)) {
-      device = /iPad/i.test(ua) ? 'Tablet' : 'Mobile';
-    }
+/**
+ * Phân tích nguồn truy cập:
+ * - Đọc UTM params (utm_source / utm_medium / utm_campaign) nếu có trong URL
+ * - document.referrer nếu có
+ * - 'Direct' nếu không có gì
+ */
+function getSource() {
+  const params      = new URLSearchParams(window.location.search);
+  const utmSource   = params.get('utm_source');
+  const utmMedium   = params.get('utm_medium');
+  const utmCampaign = params.get('utm_campaign');
 
-    // Tên trình duyệt
-    let browser = 'Unknown';
-    if (/Edg\//i.test(ua))        browser = 'Edge';
-    else if (/OPR\//i.test(ua))   browser = 'Opera';
-    else if (/Chrome\//i.test(ua)) browser = 'Chrome';
-    else if (/Firefox\//i.test(ua)) browser = 'Firefox';
-    else if (/Safari\//i.test(ua)) browser = 'Safari';
+  if (utmSource) {
+    return [utmSource, utmMedium, utmCampaign].filter(Boolean).join(' / ');
+  }
 
-    const payload = {
-      time:     timeStr,
-      event:    eventName === 'cv_view' ? '👁 Xem CV' : '⬇ Tải PDF',
-      device,
-      browser,
-      screen:   `${screen.width}×${screen.height}`,
-      referrer: document.referrer || 'Direct',
-      language: navigator.language || 'unknown',
+  const ref = document.referrer;
+  if (!ref) return 'Direct';
+
+  try {
+    const hostname = new URL(ref).hostname.replace('www.', '');
+    if (/google/.test(hostname))           return `Google`;
+    if (/facebook|fb\.com/.test(hostname)) return `Facebook`;
+    if (/linkedin/.test(hostname))         return `LinkedIn`;
+    if (/github/.test(hostname))           return `GitHub`;
+    if (/twitter|x\.com/.test(hostname))   return `Twitter/X`;
+    if (/zalo/.test(hostname))             return `Zalo`;
+    return hostname;
+  } catch {
+    return ref;
+  }
+}
+
+/** Phân loại thiết bị */
+function getDevice() {
+  const ua = navigator.userAgent;
+  if (/iPad/i.test(ua)) return 'Tablet';
+  if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)) return 'Mobile';
+  return 'Desktop';
+}
+
+/** Tên trình duyệt */
+function getBrowser() {
+  const ua = navigator.userAgent;
+  if (/Edg\//i.test(ua))          return 'Edge';
+  if (/OPR\/|Opera/i.test(ua))    return 'Opera';
+  if (/CocCoc/i.test(ua))         return 'Cốc Cốc';
+  if (/Chrome\//i.test(ua))       return 'Chrome';
+  if (/Firefox\//i.test(ua))      return 'Firefox';
+  if (/Safari\//i.test(ua))       return 'Safari';
+  return 'Other';
+}
+
+/** Format thời gian VN */
+function getTimeVN() {
+  return new Date().toLocaleString('vi-VN', {
+    timeZone: 'Asia/Ho_Chi_Minh',
+    day: '2-digit', month: '2-digit', year: 'numeric',
+    hour: '2-digit', minute: '2-digit', second: '2-digit',
+  });
+}
+
+/**
+ * Gửi sự kiện tracking đến Google Sheets (fail silently)
+ * @param {'page_visit' | 'cv_view' | 'cv_download'} eventName
+ */
+export async function trackEvent(eventName) {
+  try {
+    const geo = await getGeoInfo();
+
+    const eventLabels = {
+      page_visit:  '🌐 Vào website',
+      cv_view:     '👁 Xem CV',
+      cv_download: '⬇ Tải PDF',
     };
 
-    // Dùng fetch với no-cors để tránh CORS error (Apps Script không cần preflight)
+    const payload = {
+      time:     getTimeVN(),
+      event:    eventLabels[eventName] ?? eventName,
+      ip:       geo.ip,
+      country:  geo.country,
+      city:     geo.city,
+      org:      geo.org,
+      device:   getDevice(),
+      browser:  getBrowser(),
+      screen:   `${screen.width}×${screen.height}`,
+      source:   getSource(),
+      language: navigator.language || 'unknown',
+      page:     window.location.href,
+    };
+
     fetch(WEBHOOK_URL, {
-      method: 'POST',
-      mode:   'no-cors',
+      method:  'POST',
+      mode:    'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify(payload),
-    }).catch(() => {
-      // Fail silently — tracking không được làm ảnh hưởng UX
-    });
+    }).catch(() => {});
   } catch {
-    // Fail silently
+    // Fail silently — tracking không bao giờ ảnh hưởng UX
   }
+}
+
+// Alias giữ nguyên tên cũ để không cần sửa CVPreviewModal
+export const trackCVEvent = trackEvent;
+
+/**
+ * Hook: gọi 1 lần duy nhất khi app mount → tracking lượt vào website
+ */
+import { useEffect } from 'react';
+
+export function usePageTracking() {
+  useEffect(() => {
+    trackEvent('page_visit');
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 }
