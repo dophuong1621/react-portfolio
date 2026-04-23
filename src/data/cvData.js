@@ -2,7 +2,7 @@
 // Mọi thay đổi ở đây sẽ tự động phản ánh cả lên Portfolio lẫn file CV tải về.
 
 export const userInfo = {
-  name: 'ĐỖ THẾ PHƯƠNG',
+  name: 'Đỗ Thế Phương',
   title: 'Full-Stack Developer (PHP / Laravel)',
   dob: '16/02/2001',
   email: 'phuongdt1621@gmail.com',

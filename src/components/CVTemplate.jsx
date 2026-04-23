@@ -192,7 +192,7 @@ const CVTemplate = forwardRef((_props, ref) => {
               fontSize:    26, fontWeight: 900,
               color:       GRAD_COLOR,
               letterSpacing: -0.5,
-              fontFamily:  "'Outfit', sans-serif",
+              fontFamily:  "'Be Vietnam Pro', sans-serif",
               marginBottom: 2,
             }}>
               {userInfo.name}
@@ -316,7 +316,7 @@ const CVTemplate = forwardRef((_props, ref) => {
                 fontSize:    11.5, fontWeight: 800,
                 color:       C.indigo,
                 marginBottom: 6,
-                fontFamily:  "'Outfit', sans-serif",
+                fontFamily:  "'Be Vietnam Pro', sans-serif",
               }}>
                 {proj.name}
               </div>
