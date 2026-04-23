@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 // Webhook URL của Google Apps Script
 const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwzO_Gs3UNayoq9NSGY_S1ScpPNVHksK24BheXcunA-7HxcuGQSeKVIrPoLCMMQjt6T/exec';
 
@@ -26,7 +28,7 @@ async function getGeoInfo() {
 
 /**
  * Phân tích nguồn truy cập:
- * - Đọc UTM params (utm_source / utm_medium / utm_campaign) nếu có trong URL
+ * - UTM params nếu có trong URL
  * - document.referrer nếu có
  * - 'Direct' nếu không có gì
  */
@@ -45,12 +47,12 @@ function getSource() {
 
   try {
     const hostname = new URL(ref).hostname.replace('www.', '');
-    if (/google/.test(hostname))           return `Google`;
-    if (/facebook|fb\.com/.test(hostname)) return `Facebook`;
-    if (/linkedin/.test(hostname))         return `LinkedIn`;
-    if (/github/.test(hostname))           return `GitHub`;
-    if (/twitter|x\.com/.test(hostname))   return `Twitter/X`;
-    if (/zalo/.test(hostname))             return `Zalo`;
+    if (/google/.test(hostname))           return 'Google';
+    if (/facebook|fb\.com/.test(hostname)) return 'Facebook';
+    if (/linkedin/.test(hostname))         return 'LinkedIn';
+    if (/github/.test(hostname))           return 'GitHub';
+    if (/twitter|x\.com/.test(hostname))   return 'Twitter/X';
+    if (/zalo/.test(hostname))             return 'Zalo';
     return hostname;
   } catch {
     return ref;
@@ -68,12 +70,12 @@ function getDevice() {
 /** Tên trình duyệt */
 function getBrowser() {
   const ua = navigator.userAgent;
-  if (/Edg\//i.test(ua))          return 'Edge';
-  if (/OPR\/|Opera/i.test(ua))    return 'Opera';
-  if (/CocCoc/i.test(ua))         return 'Cốc Cốc';
-  if (/Chrome\//i.test(ua))       return 'Chrome';
-  if (/Firefox\//i.test(ua))      return 'Firefox';
-  if (/Safari\//i.test(ua))       return 'Safari';
+  if (/Edg\//i.test(ua))        return 'Edge';
+  if (/OPR\/|Opera/i.test(ua))  return 'Opera';
+  if (/CocCoc/i.test(ua))       return 'Cốc Cốc';
+  if (/Chrome\//i.test(ua))     return 'Chrome';
+  if (/Firefox\//i.test(ua))    return 'Firefox';
+  if (/Safari\//i.test(ua))     return 'Safari';
   return 'Other';
 }
 
@@ -122,18 +124,16 @@ export async function trackEvent(eventName) {
       body:    JSON.stringify(payload),
     }).catch(() => {});
   } catch {
-    // Fail silently — tracking không bao giờ ảnh hưởng UX
+    // Fail silently
   }
 }
 
-// Alias giữ nguyên tên cũ để không cần sửa CVPreviewModal
+// Alias để CVPreviewModal không cần đổi tên import
 export const trackCVEvent = trackEvent;
 
 /**
  * Hook: gọi 1 lần duy nhất khi app mount → tracking lượt vào website
  */
-import { useEffect } from 'react';
-
 export function usePageTracking() {
   useEffect(() => {
     trackEvent('page_visit');
