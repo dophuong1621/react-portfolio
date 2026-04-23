@@ -1,10 +1,45 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const HASHES = ['hero', 'skills', 'experience', 'projects', 'contact'];
 
 export default function Navbar({ swiper, isMobile }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Desktop: Theo dõi Swiper slide change
+  useEffect(() => {
+    if (swiper) {
+      const onSlideChange = () => setActiveIndex(swiper.activeIndex);
+      swiper.on('slideChange', onSlideChange);
+      // set initial state in case it's not 0
+      setActiveIndex(swiper.activeIndex);
+      return () => swiper.off('slideChange', onSlideChange);
+    }
+  }, [swiper]);
+
+  // Mobile: Theo dõi scroll
+  useEffect(() => {
+    if (isMobile) {
+      const handleScroll = () => {
+        // Offset 100px để trigger sớm 1 chút khi cuộn
+        const scrollPosition = window.scrollY + 100;
+        let currentIdx = 0;
+        for (let i = 0; i < HASHES.length; i++) {
+          const el = document.getElementById(HASHES[i]);
+          if (el && el.offsetTop <= scrollPosition) {
+            currentIdx = i;
+          }
+        }
+        setActiveIndex(currentIdx);
+      };
+      
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      // Chạy 1 lần lúc mount
+      handleScroll();
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, [isMobile]);
 
   const handleNav = (e, index) => {
     e.preventDefault();
@@ -43,7 +78,7 @@ export default function Navbar({ swiper, isMobile }) {
               <a
                 href={`#${['hero','skills','experience','projects','contact'][index]}`}
                 onClick={(e) => handleNav(e, index)}
-                className={index === 4 ? 'nav-cta' : ''}
+                className={`${index === 4 ? 'nav-cta' : ''} ${activeIndex === index ? 'active' : ''}`.trim()}
               >
                 {label}
               </a>
@@ -97,6 +132,7 @@ export default function Navbar({ swiper, isMobile }) {
                   <a
                     href={`#${['hero','skills','experience','projects','contact'][index]}`}
                     onClick={(e) => handleNav(e, index)}
+                    className={activeIndex === index ? 'active' : ''}
                   >
                     <span className="drawer-num">0{i + 1}</span>
                     {label}

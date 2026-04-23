@@ -65,8 +65,15 @@ nav {
 .nav-links a {
   color: var(--muted); text-decoration: none; font-size: .95rem;
   font-weight: 500; transition: color .2s;
+  position: relative;
 }
 .nav-links a:hover { color: var(--text); }
+
+/* Hiệu ứng active chữ sáng màu */
+.nav-links a.active:not(.nav-cta) {
+  color: #fff;
+  text-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+}
 .nav-cta {
   padding: .5rem 1.2rem;
   background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
@@ -642,6 +649,13 @@ footer {
     text-decoration: none;
     border-bottom: 1px solid var(--border);
     transition: color .2s, padding-left .2s;
+  }
+  
+  .drawer-links li a.active {
+    color: #fff;
+    padding-left: 0.5rem;
+    background: linear-gradient(90deg, rgba(168, 85, 247, 0.1), transparent);
+    border-left: 4px solid var(--brand-3);
   }
 
   .drawer-links li:last-child a { border-bottom: none; }

@@ -64,7 +64,7 @@ export default function Hero({ swiper, isActive }) {
               {showTypewriter ? (
                 <Typewriter
                   options={{
-                    strings: ['Full-Stack Developer', 'System Architecture', 'UI/UX Enthusiast'],
+                    strings: ['Full-Stack Developer', 'Web Developer', 'System Architecture', 'UI/UX Enthusiast'],
                     autoStart: true,
                     loop: true,
                     delay: 40,
