@@ -12,16 +12,33 @@ let geoCache = null;
 async function getGeoInfo() {
   if (geoCache) return geoCache;
   try {
+    // Thử ipapi.co trước
     const res = await fetch('https://ipapi.co/json/', { mode: 'cors' });
     const data = await res.json();
+
+    // Nếu bị rate-limit, ipapi.co trả về { error: true }
+    if (data.error) throw new Error('rate limited');
+
     geoCache = {
-      ip:      data.ip            || 'unknown',
-      country: data.country_name  || 'unknown',
-      city:    data.city          || 'unknown',
-      org:     data.org           || 'unknown',
+      ip:      data.ip           || 'unknown',
+      country: data.country_name || 'unknown',
+      city:    data.city         || 'unknown',
+      org:     data.org          || 'unknown',
     };
   } catch {
-    geoCache = { ip: 'unknown', country: 'unknown', city: 'unknown', org: 'unknown' };
+    try {
+      // Fallback sang ip-api.com (1000 req/min, không cần key)
+      const res2 = await fetch('https://ip-api.com/json/?fields=query,country,city,isp', { mode: 'cors' });
+      const d2 = await res2.json();
+      geoCache = {
+        ip:      d2.query   || 'unknown',
+        country: d2.country || 'unknown',
+        city:    d2.city    || 'unknown',
+        org:     d2.isp     || 'unknown',
+      };
+    } catch {
+      geoCache = { ip: 'unknown', country: 'unknown', city: 'unknown', org: 'unknown' };
+    }
   }
   return geoCache;
 }
