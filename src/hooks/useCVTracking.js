@@ -3,46 +3,6 @@ import { useEffect } from 'react';
 // Webhook URL của Google Apps Script
 const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwxMmx9aq3JVqW3jEd-jUl1ZUKvVk7JeastDi1S6dQQPi-N5veXh6nuZF-HsNYV9VYdSA/exec';
 
-// Cache geo data để không gọi API nhiều lần trong 1 session
-let geoCache = null;
-
-/**
- * Lấy IP + vị trí địa lý qua ipapi.co (free, 1000 req/ngày)
- */
-async function getGeoInfo() {
-  if (geoCache) return geoCache;
-  try {
-    // Thử ipapi.co trước
-    const res = await fetch('https://ipapi.co/json/', { mode: 'cors' });
-    const data = await res.json();
-
-    // Nếu bị rate-limit, ipapi.co trả về { error: true }
-    if (data.error) throw new Error('rate limited');
-
-    geoCache = {
-      ip:      data.ip           || 'unknown',
-      country: data.country_name || 'unknown',
-      city:    data.city         || 'unknown',
-      org:     data.org          || 'unknown',
-    };
-  } catch {
-    try {
-      // Fallback sang ip-api.com (1000 req/min, không cần key)
-      const res2 = await fetch('https://ip-api.com/json/?fields=query,country,city,isp', { mode: 'cors' });
-      const d2 = await res2.json();
-      geoCache = {
-        ip:      d2.query   || 'unknown',
-        country: d2.country || 'unknown',
-        city:    d2.city    || 'unknown',
-        org:     d2.isp     || 'unknown',
-      };
-    } catch {
-      geoCache = { ip: 'unknown', country: 'unknown', city: 'unknown', org: 'unknown' };
-    }
-  }
-  return geoCache;
-}
-
 /**
  * Phân tích nguồn truy cập:
  * - UTM params nếu có trong URL
@@ -111,8 +71,6 @@ function getTimeVN() {
  */
 export async function trackEvent(eventName) {
   try {
-    const geo = await getGeoInfo();
-
     const eventLabels = {
       page_visit:  '🌐 Vào website',
       cv_view:     '👁 Xem CV',
@@ -127,10 +85,6 @@ export async function trackEvent(eventName) {
       screen:   `${screen.width}×${screen.height}`,
       source:   getSource(),
       language: navigator.language || 'unknown',
-      ip:       geo.ip,
-      country:  geo.country,
-      city:     geo.city,
-      org:      geo.org,
     };
 
     fetch(WEBHOOK_URL, {
