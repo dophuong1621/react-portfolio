@@ -122,16 +122,15 @@ export async function trackEvent(eventName) {
     const payload = {
       time:     getTimeVN(),
       event:    eventLabels[eventName] ?? eventName,
-      ip:       geo.ip,
-      country:  geo.country,
-      city:     geo.city,
-      org:      geo.org,
       device:   getDevice(),
       browser:  getBrowser(),
       screen:   `${screen.width}×${screen.height}`,
       source:   getSource(),
       language: navigator.language || 'unknown',
-      page:     window.location.href,
+      ip:       geo.ip,
+      country:  geo.country,
+      city:     geo.city,
+      org:      geo.org,
     };
 
     fetch(WEBHOOK_URL, {
